@@ -28,7 +28,7 @@ import config
 
 openai.api_key = config.API_KEY
 ```
-* Launched Outlook and ensured I was signed in, if I saw the outlook window which contained emails, etc, then I should be able to make API calls.
+* Launched Outlook and ensured I was signed in, if I saw the outlook window which contained emails, etc, then I should be able to make API calls. I had issues where I was logged in under an old account. I kept getting error messages. Had to ensure I was completely signed out first then signed in with a student email. You can even create a new one to test with.
 * Added the following to app.py:
 ```python
 def last_five_emails():

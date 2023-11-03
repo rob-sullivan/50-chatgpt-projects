@@ -24,6 +24,25 @@ def last_five_emails():
         emails.append(messages.GetPrevious().Subject)
     return emails #I return email subjects from this method
 
+def reply():
+    email = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI").GetDefaultFolder(6).Items.Item(selected_subject.get())
+    """
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        max_tokens=1024,
+        n=1,
+        messages=[
+            {"role": "user", "content": "You are a professional email writer"},
+            {"role": "assistant", "content": "Ok"},
+            {"role": "user", "content": f"Create a reply to this email:\n {email.Body}"}
+        ]
+    )
+    """
+    reply = email.Reply()
+    reply.Body = "hellow world" # response["choices"][0]["message"]["content"]
+    reply.Display()
+    return
+
 # UI for email reply generator
 #I access tkiniter's libary to create a base UI window
 root = tk.Tk()
@@ -31,18 +50,22 @@ root = tk.Tk()
 root.title("Email Reply Generator")
 root.geometry("300x300")
 
-# I call the method we created earlier to get the most recent 5 emails 
+# called the method we created earlier to get the most recent 5 emails 
 # and save the subject lines
 email_subjects = last_five_emails()
 selected_subject = tk.StringVar()
 
-# I add the subject lines into a dropdown menu button
+# Added the subject lines into a dropdown menu button
 dropdown = tk.OptionMenu(root, selected_subject, *email_subjects)
 dropdown.pack()
 
-# I label the button
+# labelled the button
 label = tk.Label(root, text="Previous emails")
 label.pack()
+
+# Added button to call GPT and create a reply
+button = tk.Button(root, text="Generate Reply", command=reply)
+button.pack()
 
 # I call the main tkinter UI to display it for the user
 root.mainloop()
