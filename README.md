@@ -52,19 +52,26 @@ def last_five_emails():
 ```
 * Now that I can access the previous 5 emails I then build the UI for the email reply generator. I make use of builtin python UI libary called Tkinter and add the following to app.py:
 ```python
+#I access tkiniter's libary to create a base UI window
 root = tk.Tk()
-root.title("Outlook Emails")
+# I set the title and size of that window
+root.title("Email Reply Generator")
 root.geometry("300x300")
 
-email_subjects = last_10_emails()
+# I call the method we created earlier to get the most recent 5 emails 
+# and save the subject lines
+email_subjects = last_five_emails()
 selected_subject = tk.StringVar()
 
+# I add the subject lines into a dropdown menu button
 dropdown = tk.OptionMenu(root, selected_subject, *email_subjects)
 dropdown.pack()
 
-label = tk.Label(root, text="")
+# I label the button
+label = tk.Label(root, text="Previous emails")
 label.pack()
 
+# I call the main tkinter UI to display it for the user
 root.mainloop()
 
 ```
