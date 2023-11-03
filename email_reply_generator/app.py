@@ -26,7 +26,7 @@ def last_five_emails():
 
 def reply():
     email = win32com.client.Dispatch("Outlook.Application").GetNamespace("MAPI").GetDefaultFolder(6).Items.Item(selected_subject.get())
-    """
+    
     response = openai.ChatCompletion.create(
         model="gpt-4",
         max_tokens=1024,
@@ -37,9 +37,8 @@ def reply():
             {"role": "user", "content": f"Create a reply to this email:\n {email.Body}"}
         ]
     )
-    """
     reply = email.Reply()
-    reply.Body = "hellow world" # response["choices"][0]["message"]["content"]
+    reply.Body = response["choices"][0]["message"]["content"]
     reply.Display()
     return
 
