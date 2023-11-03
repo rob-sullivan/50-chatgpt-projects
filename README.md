@@ -23,3 +23,5 @@ import tkinter as tk
 import config
 
 openai.api_key = config.API_KEY
+```
+* Launch Outlook and ensure you are signed in.
