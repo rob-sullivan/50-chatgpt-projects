@@ -77,3 +77,66 @@ root.mainloop()
 ```
 
 ## Presentation Generator
+In this project I automate PowerPoint presentation development by combining DALL-E art with ChatGPT’s human-like text to create presentation slides.
+
+* Installed Microsoft Powerpoint on my computer and setup an email account.
+* Installed the following libraries in a vs code terminal (ensuring my venv is active!)
+>```pip install python-pptx```
+
+>```pip install openai```
+
+>```pip install requests```
+* Created a file called config.py and save the following into it:
+> ```API_KEY = "<YOUR_CHATGPT_API_KEY>"```
+* Created a new file called app.py and place the following into it:
+```python
+import collections.abc
+import config
+assert collections
+import tkinter as tk
+from pptx import Presentation
+from pptx.util import Inches, Pt
+import openai
+from io import BytesIO
+import requests
+
+openai.api_key = config.API_KEY
+```
+* Added the following to app.py
+```python
+app = tk.Tk()
+app.title("Crate PPT Slides")
+app.geometry("800x600")
+
+# Create text field
+text_field = tk.Text(app)
+text_field.pack(fill="both", expand=True)
+text_field.configure(wrap="word", font=("Arial", 12))
+text_field.focus_set()
+
+# Create the button to create slides
+create_button = tk.Button(app, text="Create Slides", command=get_slides)
+create_button.pack()
+app.mainloop()
+```
+
+* Added the following to app.py
+```
+def get_slides():
+text = text_field.get("1.0", "end-1c")
+paragraphs = text.split("\n\n")
+prs = Presentation()
+width = Pt(1920)
+height = Pt(1080)
+prs.slide_width = width
+prs.slide_height = height
+for paragraph in paragraphs:
+slide_generator(paragraph, prs)
+prs.save("my_presentation.pptx")
+app = tk.Tk()
+app.title("Crate PPT Slides")
+app.geometry("800x600")
+# Create text field
+text_field = tk.Text(app)
+text_field.pack(fill="both", expand=True)
+```
