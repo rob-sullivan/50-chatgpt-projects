@@ -13,7 +13,7 @@
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 venv_chatgpt/
-config.py
+*config.py
 # Mono auto generated files
 mono_crash.*
 
