@@ -108,8 +108,9 @@ import requests
 
 openai.api_key = config.API_KEY
 ```
-* Added the following to app.py
+* Added the following to app.py to create the GUI to allow users to generate powerpoint slides.
 ```python
+#I first create the gui window for the user
 app = tk.Tk()
 app.title("Crate PPT Slides")
 app.geometry("800x600")
@@ -126,25 +127,24 @@ create_button.pack()
 app.mainloop()
 ```
 
-* Added the following to app.py
-```
+* Added the following to app.py above where I defined the Tkinter GUI. This allowed me to build functionality for creating the presentation and slides.
+```python
 def get_slides():
-text = text_field.get("1.0", "end-1c")
-paragraphs = text.split("\n\n")
-prs = Presentation()
-width = Pt(1920)
-height = Pt(1080)
-prs.slide_width = width
-prs.slide_height = height
-for paragraph in paragraphs:
-slide_generator(paragraph, prs)
-prs.save("my_presentation.pptx")
-app = tk.Tk()
-app.title("Crate PPT Slides")
-app.geometry("800x600")
-# Create text field
-text_field = tk.Text(app)
-text_field.pack(fill="both", expand=True)
+    # I get content from the text field starting from the first character to the last character, except the new line character.
+    text = text_field.get("1.0", "end-1c")
+
+    # I split text into paragraphs
+    paragraphs = text.split("\n\n")
+
+    # I initalise an empty powerpoint presentation
+    prs = Presentation()
+    width = Pt(1920)
+    height = Pt(1080)
+    prs.slide_width = width
+    prs.slide_height = height
+    for paragraph in paragraphs:
+        slide_generator(paragraph, prs)
+    prs.save("my_presentation.pptx")
 ```
 
 

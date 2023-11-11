@@ -10,17 +10,6 @@ import requests
 # API Token
 openai.api_key = config.API_KEY
 
-app = tk.Tk()
-app.title("Crate PPT Slides")
-app.geometry("800x600")
-# Create text field
-text_field = tk.Text(app)
-text_field.pack(fill="both", expand=True)
-text_field.configure(wrap="word", font=("Arial", 12))
-text_field.focus_set()
-# Create the button to create slides
-create_button = tk.Button(app, text="Create Slides", command=get_slides)
-
 def get_slides():
     text = text_field.get("1.0", "end-1c")
     paragraphs = text.split("\n\n")
@@ -70,8 +59,7 @@ text_field.configure(wrap="word", font=("Arial", 12))
 text_field.focus_set()
 
 # Create the button to create slides
-create_button = tk.Button(app, text="Create Slides",
-command=get_slides)
+create_button = tk.Button(app, text="Create Slides", command=get_slides)
 create_button.pack()
 
 app.mainloop()
