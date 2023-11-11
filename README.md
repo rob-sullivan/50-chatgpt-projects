@@ -9,7 +9,13 @@ the code for 50 amazing ChatGPT projects for developers
 4. Activated python [virtual environment](https://docs.python.org/3/library/venv.html):
     >```.\venv_chatgpt\Scripts\activate```
 
-## Email Reply Generator
+## 1. Chatbot
+
+## 3. Code Bug Fixer
+
+## 2. Quiz Generator
+
+## 3. Email Reply Generator
 In this project I automatically generate original replies to specific emails by integrating GPT-4 with Outlook API. We use Python 3.7, OpenAI API key, windows and Microsoft Office 365 Outlook for this project.
 
 * Installed Microsoft Outlook on my computer and setup an email account.
@@ -76,7 +82,7 @@ root.mainloop()
 
 ```
 
-## Presentation Generator
+## 4. Presentation Generator
 In this project I automate PowerPoint presentation development by combining DALL-E art with ChatGPT’s human-like text to create presentation slides.
 
 * Installed Microsoft Powerpoint on my computer and setup an email account.
@@ -140,3 +146,50 @@ app.geometry("800x600")
 text_field = tk.Text(app)
 text_field.pack(fill="both", expand=True)
 ```
+
+
+
+## 5. Document Translator
+
+## 6. Essay Topic Generator
+
+## 7. Voice Dictation (Speech-To-Text-To-Speech)
+In this project I get chatgpt to transcribe my voice and then speak back replies to me
+
+## 8. Email Scraper
+In this project I scape emails from linkedin by asking chatgpt to get me a list of [People] who work in [Industry]
+
+## 9. Sports Reporter
+In this project chatgpt will scrape sports websites to provide me a summary and scores on my favourite teams
+
+## 10. Lyrics Explainer
+In this project chatgpt will explain the meaning behind the lyrics to my favourite songs
+
+## 11. Merge CSV or PDF files
+In this project chatgpt will merge csv or pdf files for me
+
+## 12. Spam Detector
+
+## 13. Movie Explainer
+In this project chatgpt will provide information about my favourite movies
+
+## 14. Music Player
+In this project I ask chatgpt to play my favourite music
+
+## 15. News Reporter
+In this project chatgpt will scrape and summerise the news for me.
+
+## 16. Background Noise Filter
+In this project I give chatgpt audio files and ask it to reduce the background noise.
+
+## 17. Financial Stock Analyst
+In this project chatgpt will provide me basic information on stocks I'm interested in.
+
+## 18. Guess Numbers Game
+In this project I have to guess chatgpt's chosen numbers.
+
+## 19. Password Generator
+In this project chatgpt creates secure passwords for me.
+
+## 20. Document/Image to Text Reader
+In this project chatgpt gets text from images or documents and reads them back to me.
