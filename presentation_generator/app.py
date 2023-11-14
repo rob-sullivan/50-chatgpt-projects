@@ -10,21 +10,12 @@ import requests
 # API Token
 openai.api_key = config.API_KEY
 
-def get_slides():
-    text = text_field.get("1.0", "end-1c")
-    paragraphs = text.split("\n\n")
-    prs = Presentation()
-    width = Pt(1920)
-    height = Pt(1080)
-    prs.slide_width = width
-    prs.slide_height = height
-    for paragraph in paragraphs:
-        slide_generator(paragraph, prs)
-    prs.save("my_presentation.pptx")
-
 def slide_generator(text, prs):
+    # I take text from the user and formulate it into a prompt for chatgpt
     prompt = f"Summarize the following text to a DALL-E image generation prompt: \n {text}"
 
+    # I define which gpt I want to use then I pass it into chatgpt
+    # Here I want the result to be summerized as a prompt for dalle
     model_engine = "gpt-4"
     dlp = openai.ChatCompletion.create(
         model=model_engine,
@@ -38,17 +29,75 @@ def slide_generator(text, prs):
         stop=None,
         temperature=0.8
     )
-    
+    # I define a dalle prompt and get output of chatgpt to pass into dalle
     dalle_prompt = dlp["choices"][0]["message"]["content"]
     dalle_prompt = dlp.choices[0].text
+
+    # I ask dalle to generate an image based on chatgpt prompt
     response = openai.Image.create(
         prompt=dalle_prompt + " Style: digital art",
-        n=1,
+        n=1,#I only want one image
         size="1024x1024")
     image_url = response['data'][0]['url']
 
+    #I ask chatGPT to create bullet points
+    prompt = f"Create a bullet point text for a Powerpoint slide from the following text: \n {text}"
+    ppt = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=[
+            {"role": "user", "content": "I will ask you a question"},
+            {"role": "assistant", "content": "Ok"},
+            {"role": "user", "content": f"{prompt}"}
+        ],
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.8
+    )
+    ppt_text = ppt["choices"][0]["message"]["content"]
+
+    # I then ask chatgpt to add a title
+    prompt = f"Create a title for a Powerpoint slide from the following text: \n {text}"
+    ppt = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=[
+            {"role": "user", "content": "I will ask you a question"},
+            {"role": "assistant", "content": "Ok"},
+            {"role": "user", "content": f"{prompt}"}
+        ],
+        max_tokens=1024,
+        n=1,
+        stop=None,
+        temperature=0.8
+    )
+    ppt_header = ppt["choices"][0]["message"]["content"]
+    
+    # Finally I add both image and text to the slide slide to the presentation
+    slide = prs.slides.add_slide(prs.slide_layouts[1])
+    response = requests.get(image_url)
+
+def get_slides():
+    # I get content from the text field starting from the first character to the last character, except the new line character.
+    text = text_field.get("1.0", "end-1c")
+
+    # I split text into paragraphs
+    paragraphs = text.split("\n\n")
+
+    # I initalise an empty powerpoint presentation
+    prs = Presentation()
+    width = Pt(1920)
+    height = Pt(1080)
+    prs.slide_width = width
+    prs.slide_height = height
+
+    # I loop through each text field paragraph and add them to the slides
+    for paragraph in paragraphs:
+        slide_generator(paragraph, prs)
+    # Save with file name
+    prs.save("chatgpt_presentation.pptx")
+
 app = tk.Tk()
-app.title("Crate PPT Slides")
+app.title("PPT Slides Generator")
 app.geometry("800x600")
 
 # Create text field

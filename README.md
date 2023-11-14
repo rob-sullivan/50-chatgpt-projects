@@ -142,12 +142,43 @@ def get_slides():
     height = Pt(1080)
     prs.slide_width = width
     prs.slide_height = height
+    # I loop through each text field paragraph and add them to the slides
     for paragraph in paragraphs:
         slide_generator(paragraph, prs)
-    prs.save("my_presentation.pptx")
+    # Save with file name
+    prs.save("chatgpt_presentation.pptx")
 ```
+* Added the following to app.py above where I defined the get_slides(). This allowed me to build functionality for passing ChatGPT output to Dalle prompts.
+```python
+def slide_generator(text, prs):
+    prompt = f"Summarize the following text to a DALL-E image generation prompt: \n {text}"
 
+    model_engine = "gpt-4"
+    dlp = openai.ChatCompletion.create(
+        model=model_engine,
+        messages=[
+            {"role": "user", "content": "I will ask you a question"},
+            {"role": "assistant", "content": "Ok"},
+            {"role": "user", "content": f"{prompt}"}
+        ],
+        max_tokens=250,
+        n=1,
+        stop=None,
+        temperature=0.8
+    )
+    
+    dalle_prompt = dlp["choices"][0]["message"]["content"]
+    dalle_prompt = dlp.choices[0].text
+    response = openai.Image.create(
+        prompt=dalle_prompt + " Style: digital art",
+        n=1,
+        size="1024x1024")
+    image_url = response['data'][0]['url']
+```
+* Now I create slide headers and bullet points using Dall-E generated images and ChatGPT generated text.
+```python
 
+```
 
 ## 5. Document Translator
 
