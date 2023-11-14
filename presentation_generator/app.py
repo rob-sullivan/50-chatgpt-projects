@@ -31,7 +31,6 @@ def slide_generator(text, prs):
     )
     # I define a dalle prompt and get output of chatgpt to pass into dalle
     dalle_prompt = dlp["choices"][0]["message"]["content"]
-    dalle_prompt = dlp.choices[0].text
 
     # I ask dalle to generate an image based on chatgpt prompt
     response = openai.Image.create(
@@ -72,9 +71,22 @@ def slide_generator(text, prs):
     )
     ppt_header = ppt["choices"][0]["message"]["content"]
     
-    # Finally I add both image and text to the slide slide to the presentation
+    # I create a new slide
     slide = prs.slides.add_slide(prs.slide_layouts[1])
+
+    #Got image from url, convert it to bytes then add it to slide
     response = requests.get(image_url)
+    img_bytes = BytesIO(response.content)
+    slide.shapes.add_picture(img_bytes, Inches(1), Inches(1))
+
+    # Added text box
+    txBox = slide.shapes.add_textbox(Inches(3), Inches(1), Inches(4), Inches(1.5))
+    tf = txBox.text_frame
+    tf.text = ppt_text
+    
+    # added title
+    title_shape = slide.shapes.title
+    title_shape.text = ppt_header
 
 def get_slides():
     # I get content from the text field starting from the first character to the last character, except the new line character.
@@ -93,6 +105,7 @@ def get_slides():
     # I loop through each text field paragraph and add them to the slides
     for paragraph in paragraphs:
         slide_generator(paragraph, prs)
+        print("created slide")
     # Save with file name
     prs.save("chatgpt_presentation.pptx")
 
