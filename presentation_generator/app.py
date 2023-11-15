@@ -108,6 +108,7 @@ def get_slides():
         print("created slide")
     # Save with file name
     prs.save("chatgpt_presentation.pptx")
+    print("Complete: presentation generated")
 
 app = tk.Tk()
 app.title("PPT Slides Generator")
