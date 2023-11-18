@@ -10,7 +10,13 @@ Code for 50 ChatGPT projects. [Get an email when finished](https://forms.gle/296
     >```.\venv_chatgpt\Scripts\activate```
 
 ## 1. Chatbot
+In this project I create a clone of chatgpt using flask.
+* Installed the following libraries in a vs code terminal (ensuring my venv is active!)
+>```pip install openai```
 
+>```pip install flask```
+* Created a file called config.py and save the following into it:
+> ```API_KEY = "<YOUR_CHATGPT_API_KEY>"```
 ## 3. Code Bug Fixer
 
 ## 2. Quiz Generator
