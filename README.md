@@ -1,5 +1,5 @@
 # 50-chatgpt-projects
-the code for 50 amazing ChatGPT projects for developers
+Code for 50 ChatGPT projects. [Get an email when finished](https://forms.gle/2963AjKGoU93Kc1t9).
 
 ## Environment Setup
 1. Created a repo on [github](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) then in [vs code](https://code.visualstudio.com/download) I cloned it to my laptop
@@ -16,7 +16,7 @@ the code for 50 amazing ChatGPT projects for developers
 ## 2. Quiz Generator
 
 ## 3. Email Reply Generator
-In this project I automatically generate original replies to specific emails by integrating GPT-4 with Outlook API. We use Python 3.7, OpenAI API key, windows and Microsoft Office 365 Outlook for this project.
+In this project ([demo](https://www.linkedin.com/posts/robssully_a-simple-chatgpt-email-reply-generator-activity-7127299322794135553-5GJI)) I automatically generate original replies to specific emails by integrating GPT-4 with Outlook API. We use Python 3.7, OpenAI API key, windows and Microsoft Office 365 Outlook for this project.
 
 * Installed Microsoft Outlook on my computer and setup an email account.
 * Installed the following libraries in a vs code terminal (ensuring my venv is active!)
@@ -83,7 +83,7 @@ root.mainloop()
 ```
 
 ## 4. Presentation Generator
-In this project I automate PowerPoint presentation development by combining DALL-E art with ChatGPT’s human-like text to create presentation slides.
+In this project ([demo](https://www.linkedin.com/posts/robssully_chatgpt-dalle-hackathon-activity-7130534652640923648-rgl5)) I automate PowerPoint presentation development by combining DALL-E art with ChatGPT’s human-like text to create presentation slides.
 
 * Installed Microsoft Powerpoint on my computer and setup an email account.
 * Installed the following libraries in a vs code terminal (ensuring my venv is active!)
