@@ -230,3 +230,19 @@ In this project chatgpt creates secure passwords for me.
 
 ## 20. Document/Image to Text Reader
 In this project chatgpt gets text from images or documents and reads them back to me.
+* First I install gTTS
+>```pip install gTTS```
+* Then to play speech we generate I use playsound
+>```pip install playsound```
+* I test that the text to speech is working
+```python
+from gtts import gTTS
+import playsound
+
+text_to_speech = "Hello, this is an example of using gTTS in Python."
+tts = gTTS(text=text_to_speech, lang='en')
+tts.save("example.mp3")
+
+# Play the generated audio using playsound
+playsound.playsound("example.mp3")
+```
