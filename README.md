@@ -190,8 +190,8 @@ def slide_generator(text, prs):
 
 ## 6. Essay Topic Generator
 
-## 7. Voice Dictation (Speech-To-Text-To-Speech)
-In this project I get chatgpt to transcribe my voice and then speak back replies to me
+## 7. Voice Dictation (Speech-To-Text)
+In this project I get chatgpt to transcribe my voice
 
 ## 8. Email Scraper
 In this project I scape emails from linkedin by asking chatgpt to get me a list of [People] who work in [Industry]
@@ -228,7 +228,7 @@ In this project I have to guess chatgpt's chosen numbers.
 ## 19. Password Generator
 In this project chatgpt creates secure passwords for me.
 
-## 20. Document/Image to Text Reader
+## 20. Document/Image to Text Reader  (Text-To-Speech)
 In this project chatgpt gets text from images or documents and reads them back to me.
 * First I install gTTS
 >```pip install gTTS```
