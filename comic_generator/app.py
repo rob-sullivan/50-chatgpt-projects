@@ -1,5 +1,5 @@
 import collections.abc
-import config
+import chatbot.config as config
 assert collections
 import tkinter as tk
 from pptx import Presentation
