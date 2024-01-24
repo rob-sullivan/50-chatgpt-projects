@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .container {
+            margin-top: 20px;
+            margin-left: 15px;
+            margin-right: 15px;
+        }
+        #chat {
+            height: 500px;
+            overflow-y: scroll;
+            background-color: #f1f2fa;
+        }
+        .list-group-item {
+            border-radius: 5px;
+            background-color: #c0c0c0;
+        }
+        .input-group input {
+            background-color: #f1f2fa;
+            color: #000000;
+            border: none;
+            width: 85%;
+        }
+        /* Add responsive design tweaks here */
+    </style>
+    <title>TaxTrim: Irish Tax Assistant</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Irish Tax Assistant</h2>
+        <hr>
+        <div class="panel panel-default">
+            <div class="panel-body" id="chat">
+                <ul class="list-group"></ul>
+            </div>
+        </div>
+        <div class="input-group">
+            <input type="text" id="userInput" class="form-control">
+            <span class="input-group-btn">
+                <button class="btn btn-default" id="submit">Send</button>
+            </span>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $("#submit").click(function(){
+            var userInput = $("#userInput").val();
+            // Sanitize userInput here
+            $.get("/get?msg=" + userInput, function(data){
+                $("#chat").append("<li class='list-group-item'><b>You:</b> " + userInput + "</li>");
+                $("#chat").append("<li class='list-group-item'><b>OpenAI:</b> " + data + "</li>");
+                // Auto-scroll to the latest message
+                $('#chat').scrollTop($('#chat')[0].scrollHeight);
+            });
+            // Clear input field after submission
+            $("#userInput").val('');
+        });
+    </script>
+</body>
+</html>
