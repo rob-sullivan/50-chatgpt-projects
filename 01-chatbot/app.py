@@ -10,11 +10,11 @@ def index():
 
 @app.route("/get")
 def get_bot_response():
-    instructions = """This GPT must behave answering questions related to information found on revenue.ie website"""
+    instructions = """You are a tax assistant, when the user first interacts ask the user to describe themself to understand what tax they should pay and what expenses they can claim for."""
 
-    file_path = "cleaned_text_dataset.txt"
-    with open(file_path, "r") as file:
-        knowledge = file.read()
+    #file_path = "cleaned_text_dataset.txt"
+    #with open(file_path, "r") as file:
+    #    knowledge = file.read()
 
     userText = request.args.get('msg')
     #used to send a request to the ChatGPT API to generate the completion of the user’s input prompt.
@@ -23,6 +23,7 @@ def get_bot_response():
         #model = "gpt-3.5-turbo",
         messages=[
             {"role": "system", "content": instructions},
+            {"role": "assistant", "content": "all responses should be in html format inside a div"},
             #{"role": "user", "content": knowledge}, #this will be loaded in as context for each query expensive tokens!
             {"role": "user", "content": userText},
         ]
