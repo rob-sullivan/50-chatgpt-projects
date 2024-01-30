@@ -17,11 +17,49 @@ In this project I create a clone of chatgpt using flask.
 >```pip install flask```
 * Created a file called config.py and save the following into it:
 > ```API_KEY = "<YOUR_CHATGPT_API_KEY>"```
-## 3. Code Bug Fixer
 
-## 2. Quiz Generator
+```python
+#pip install flask
+from flask import Flask, request, render_template
+import openai
+import config
+openai.api_key = config.API_KEY
 
-## 3. Email Reply Generator
+app = Flask(__name__)
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+@app.route("/get")
+def get_bot_response():
+    instructions = """This GPT must behave answering questions related to information found on revenue.ie website"""
+
+    file_path = "cleaned_text_dataset.txt"
+    with open(file_path, "r") as file:
+        knowledge = file.read()
+
+    userText = request.args.get('msg')
+    #used to send a request to the ChatGPT API to generate the completion of the user’s input prompt.
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        #model = "gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": instructions},
+            #{"role": "user", "content": knowledge}, #this will be loaded in as context for each query expensive tokens!
+            {"role": "user", "content": userText},
+        ]
+    )
+    answer = response["choices"][0]["message"]["content"]
+    return str(answer)
+
+if __name__ == "__main__":
+    app.run()
+```
+## 2. Code Bug Fixer
+
+## 3. Quiz Generator
+
+## 4. Email Reply Generator
 In this project ([demo](https://www.linkedin.com/posts/robssully_a-simple-chatgpt-email-reply-generator-activity-7127299322794135553-5GJI)) I automatically generate original replies to specific emails by integrating GPT-4 with Outlook API. We use Python 3.7, OpenAI API key, windows and Microsoft Office 365 Outlook for this project.
 
 * Installed Microsoft Outlook on my computer and setup an email account.
@@ -88,7 +126,7 @@ root.mainloop()
 
 ```
 
-## 4. Presentation Generator
+## 5. Presentation Generator
 In this project ([demo](https://www.linkedin.com/posts/robssully_chatgpt-dalle-hackathon-activity-7130534652640923648-rgl5)) I automate PowerPoint presentation development by combining DALL-E art with ChatGPT’s human-like text to create presentation slides.
 
 * Installed Microsoft Powerpoint on my computer and setup an email account.
@@ -186,49 +224,49 @@ def slide_generator(text, prs):
 
 ```
 
-## 5. Document Translator
+## 6. Document Translator
 
-## 6. Essay Topic Generator
+## 7. Essay Topic Generator
 
-## 7. Voice Dictation (Speech-To-Text)
+## 8. Voice Dictation (Speech-To-Text)
 In this project I get chatgpt to transcribe my voice
 
-## 8. Email Scraper
+## 9. Email Scraper
 In this project I scape emails from linkedin by asking chatgpt to get me a list of [People] who work in [Industry]
 
-## 9. Sports Reporter
+## 10. Sports Reporter
 In this project chatgpt will scrape sports websites to provide me a summary and scores on my favourite teams
 
-## 10. Lyrics Explainer
+## 11. Lyrics Explainer
 In this project chatgpt will explain the meaning behind the lyrics to my favourite songs
 
-## 11. Merge CSV or PDF files
+## 12. Merge CSV or PDF files
 In this project chatgpt will merge csv or pdf files for me
 
-## 12. Spam Detector
+## 13. Spam Detector
 
-## 13. Movie Explainer
+## 14. Movie Explainer
 In this project chatgpt will provide information about my favourite movies
 
-## 14. Music Player
+## 15. Music Player
 In this project I ask chatgpt to play my favourite music
 
-## 15. News Reporter
+## 16. News Reporter
 In this project chatgpt will scrape and summerise the news for me.
 
-## 16. Background Noise Filter
+## 17. Background Noise Filter
 In this project I give chatgpt audio files and ask it to reduce the background noise.
 
-## 17. Financial Stock Analyst
+## 18. Financial Stock Analyst
 In this project chatgpt will provide me basic information on stocks I'm interested in.
 
-## 18. Guess Numbers Game
+## 19. Guess Numbers Game
 In this project I have to guess chatgpt's chosen numbers.
 
-## 19. Password Generator
+## 20. Password Generator
 In this project chatgpt creates secure passwords for me.
 
-## 20. Document/Image to Text Reader  (Text-To-Speech)
+## 21. Document/Image to Text Reader  (Text-To-Speech)
 In this project chatgpt gets text from images or documents and reads them back to me.
 * First I install gTTS
 >```pip install gTTS```
