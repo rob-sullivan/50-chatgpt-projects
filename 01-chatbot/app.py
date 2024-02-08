@@ -18,7 +18,7 @@ def get_bot_response():
 
     userText = request.args.get('msg')
     #used to send a request to the ChatGPT API to generate the completion of the user’s input prompt.
-    response = openai.ChatCompletion.create(
+    response = openai.chat.completions.create(
         model="gpt-4",
         #model = "gpt-3.5-turbo",
         messages=[
@@ -28,7 +28,8 @@ def get_bot_response():
             {"role": "user", "content": userText},
         ]
     )
-    answer = response["choices"][0]["message"]["content"]
+    answer = response.choices[0].message.content
+    
     return str(answer)
 
 if __name__ == "__main__":
