@@ -1,22 +1,65 @@
 # 50-chatgpt-projects
+
 Code for 50 ChatGPT projects. [Get an email when finished](https://forms.gle/2963AjKGoU93Kc1t9).
 
+## Getting Started with Python
+
+Python is a versatile programming language that's great for beginners. This chapter will guide you through setting up Python and introduce you to its basic usage, including setting up a development environment with GitHub and virtual environments.
+
+### 1. Installing Python
+
+1. Download Python:
+   - Go to the official Python website: [python.org](https://www.python.org/) and download the latest version for your operating system (Windows, macOS, or Linux).
+2. Install Python
+   - Open the downloaded installer.
+   - Windows
+     - Make sure to check the box that says "Add Python to PATH."
+     - Click "Install Now."
+   - Mac
+     - Open the .pkg file and follow the instructions.
+   - Linux
+     - Use your package manager. For example, on Ubuntu, run
+     ```
+     sudo apt update
+     sudo apt install python3
+     ```
+
+### 2. Setting Up a Code Editor
+
+A code editor helps you write and manage your Python code efficiently. One of the most popular editors is Visual Studio Code (VS Code).
+
+1. Download and Install VS Code:
+
+   - Visit code.visualstudio.com and download the installer for your operating system.
+   - Install the editor following the instructions on the website.
+
+2. Install Python Extension for VS Code:
+   - Open VS Code.
+   - Go to the Extensions view by clicking the square icon on the sidebar or pressing **Ctrl+Shift+X**.
+   - Search for "Python" and install the extension provided by Microsoft.
+
+### 3. Setting Up a Python Development Environment
+
 ## Environment Setup
+
 1. Created a repo on [github](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) then in [vs code](https://code.visualstudio.com/download) I cloned it to my laptop
-2. With [python 3.8.0](https://www.python.org/downloads/release/python-380/) installed I setup a python virtual environment with: 
-    >```python -m venv venv_chatgpt```
+2. With [python 3.8.0](https://www.python.org/downloads/release/python-380/) installed I setup a python virtual environment with:
+   > `python -m venv venv_chatgpt`
 3. Added venv_chatgpt to .gitignore and pushed changes to github
 4. Activated python [virtual environment](https://docs.python.org/3/library/venv.html):
-    >```.\venv_chatgpt\Scripts\activate```
+   > `.\venv_chatgpt\Scripts\activate`
 
 ## 1. Chatbot
-In this project I create a clone of chatgpt using flask.
-* Installed the following libraries in a vs code terminal (ensuring my venv is active!)
->```pip install openai```
 
->```pip install flask```
-* Created a file called config.py and save the following into it:
-> ```API_KEY = "<YOUR_CHATGPT_API_KEY>"```
+In this project I create a clone of chatgpt using flask.
+
+- Installed the following libraries in a vs code terminal (ensuring my venv is active!)
+  > `pip install openai`
+
+> `pip install flask`
+
+- Created a file called config.py and save the following into it:
+  > `API_KEY = "<YOUR_CHATGPT_API_KEY>"`
 
 ```python
 #pip install flask
@@ -55,21 +98,25 @@ def get_bot_response():
 if __name__ == "__main__":
     app.run()
 ```
+
 ## 2. Code Bug Fixer
 
 ## 3. Quiz Generator
 
 ## 4. Email Reply Generator
+
 In this project ([demo](https://www.linkedin.com/posts/robssully_a-simple-chatgpt-email-reply-generator-activity-7127299322794135553-5GJI)) I automatically generate original replies to specific emails by integrating GPT-4 with Outlook API. We use Python 3.7, OpenAI API key, windows and Microsoft Office 365 Outlook for this project.
 
-* Installed Microsoft Outlook on my computer and setup an email account.
-* Installed the following libraries in a vs code terminal (ensuring my venv is active!)
->```pip install openai```
+- Installed Microsoft Outlook on my computer and setup an email account.
+- Installed the following libraries in a vs code terminal (ensuring my venv is active!)
+  > `pip install openai`
 
->```pip install pywin32```
-* Created a file called config.py and save the following into it:
-> ```API_KEY = "<YOUR_CHATGPT_API_KEY>"```
-* Created a new file called app.py and place the following into it:
+> `pip install pywin32`
+
+- Created a file called config.py and save the following into it:
+  > `API_KEY = "<YOUR_CHATGPT_API_KEY>"`
+- Created a new file called app.py and place the following into it:
+
 ```python
 import openai
 import win32com.client
@@ -78,8 +125,10 @@ import config
 
 openai.api_key = config.API_KEY
 ```
-* Launched Outlook and ensured I was signed in, if I saw the outlook window which contained emails, etc, then I should be able to make API calls. I had issues where I was logged in under an old account. I kept getting error messages. Had to ensure I was completely signed out first then signed in with a student email. You can even create a new one to test with.
-* Added the following to app.py:
+
+- Launched Outlook and ensured I was signed in, if I saw the outlook window which contained emails, etc, then I should be able to make API calls. I had issues where I was logged in under an old account. I kept getting error messages. Had to ensure I was completely signed out first then signed in with a student email. You can even create a new one to test with.
+- Added the following to app.py:
+
 ```python
 def last_five_emails():
     """Gets the last 5 email subjects from your Outlook and displays them."""
@@ -95,12 +144,14 @@ def last_five_emails():
     # I set to 5 to get the last 5 emails
     email_number = 5
     for i in range(email_number):
-        # There are other methods in win32com. 
+        # There are other methods in win32com.
         # I chose GetPrevious to get the email that came before the most recent email in the chain
         emails.append(messages.GetPrevious().Subject)
     return emails #I return email subjects from this method
 ```
-* Now that I can access the previous 5 emails I then build the UI for the email reply generator. I make use of builtin python UI libary called Tkinter and add the following to app.py:
+
+- Now that I can access the previous 5 emails I then build the UI for the email reply generator. I make use of builtin python UI libary called Tkinter and add the following to app.py:
+
 ```python
 #I access tkiniter's libary to create a base UI window
 root = tk.Tk()
@@ -108,7 +159,7 @@ root = tk.Tk()
 root.title("Email Reply Generator")
 root.geometry("300x300")
 
-# I call the method we created earlier to get the most recent 5 emails 
+# I call the method we created earlier to get the most recent 5 emails
 # and save the subject lines
 email_subjects = last_five_emails()
 selected_subject = tk.StringVar()
@@ -127,18 +178,21 @@ root.mainloop()
 ```
 
 ## 5. Presentation Generator
+
 In this project ([demo](https://www.linkedin.com/posts/robssully_chatgpt-dalle-hackathon-activity-7130534652640923648-rgl5)) I automate PowerPoint presentation development by combining DALL-E art with ChatGPT’s human-like text to create presentation slides.
 
-* Installed Microsoft Powerpoint on my computer and setup an email account.
-* Installed the following libraries in a vs code terminal (ensuring my venv is active!)
->```pip install python-pptx```
+- Installed Microsoft Powerpoint on my computer and setup an email account.
+- Installed the following libraries in a vs code terminal (ensuring my venv is active!)
+  > `pip install python-pptx`
 
->```pip install openai```
+> `pip install openai`
 
->```pip install requests```
-* Created a file called config.py and save the following into it:
-> ```API_KEY = "<YOUR_CHATGPT_API_KEY>"```
-* Created a new file called app.py and place the following into it:
+> `pip install requests`
+
+- Created a file called config.py and save the following into it:
+  > `API_KEY = "<YOUR_CHATGPT_API_KEY>"`
+- Created a new file called app.py and place the following into it:
+
 ```python
 import collections.abc
 import config
@@ -152,7 +206,9 @@ import requests
 
 openai.api_key = config.API_KEY
 ```
-* Added the following to app.py to create the GUI to allow users to generate powerpoint slides.
+
+- Added the following to app.py to create the GUI to allow users to generate powerpoint slides.
+
 ```python
 #I first create the gui window for the user
 app = tk.Tk()
@@ -171,7 +227,8 @@ create_button.pack()
 app.mainloop()
 ```
 
-* Added the following to app.py above where I defined the Tkinter GUI. This allowed me to build functionality for creating the presentation and slides.
+- Added the following to app.py above where I defined the Tkinter GUI. This allowed me to build functionality for creating the presentation and slides.
+
 ```python
 def get_slides():
     # I get content from the text field starting from the first character to the last character, except the new line character.
@@ -192,7 +249,9 @@ def get_slides():
     # Save with file name
     prs.save("chatgpt_presentation.pptx")
 ```
-* Added the following to app.py above where I defined the get_slides(). This allowed me to build functionality for passing ChatGPT output to Dalle prompts.
+
+- Added the following to app.py above where I defined the get_slides(). This allowed me to build functionality for passing ChatGPT output to Dalle prompts.
+
 ```python
 def slide_generator(text, prs):
     prompt = f"Summarize the following text to a DALL-E image generation prompt: \n {text}"
@@ -210,7 +269,7 @@ def slide_generator(text, prs):
         stop=None,
         temperature=0.8
     )
-    
+
     dalle_prompt = dlp["choices"][0]["message"]["content"]
     dalle_prompt = dlp.choices[0].text
     response = openai.Image.create(
@@ -219,7 +278,9 @@ def slide_generator(text, prs):
         size="1024x1024")
     image_url = response['data'][0]['url']
 ```
-* Now I create slide headers and bullet points using Dall-E generated images and ChatGPT generated text.
+
+- Now I create slide headers and bullet points using Dall-E generated images and ChatGPT generated text.
+
 ```python
 
 ```
@@ -229,50 +290,65 @@ def slide_generator(text, prs):
 ## 7. Essay Topic Generator
 
 ## 8. Voice Dictation (Speech-To-Text)
+
 In this project I get chatgpt to transcribe my voice
 
 ## 9. Email Scraper
+
 In this project I scape emails from linkedin by asking chatgpt to get me a list of [People] who work in [Industry]
 
 ## 10. Sports Reporter
+
 In this project chatgpt will scrape sports websites to provide me a summary and scores on my favourite teams
 
 ## 11. Lyrics Explainer
+
 In this project chatgpt will explain the meaning behind the lyrics to my favourite songs
 
 ## 12. Merge CSV or PDF files
+
 In this project chatgpt will merge csv or pdf files for me
 
 ## 13. Spam Detector
 
 ## 14. Movie Explainer
+
 In this project chatgpt will provide information about my favourite movies
 
 ## 15. Music Player
+
 In this project I ask chatgpt to play my favourite music
 
 ## 16. News Reporter
+
 In this project chatgpt will scrape and summerise the news for me.
 
 ## 17. Background Noise Filter
+
 In this project I give chatgpt audio files and ask it to reduce the background noise.
 
 ## 18. Financial Stock Analyst
+
 In this project chatgpt will provide me basic information on stocks I'm interested in.
 
 ## 19. Guess Numbers Game
+
 In this project I have to guess chatgpt's chosen numbers.
 
 ## 20. Password Generator
+
 In this project chatgpt creates secure passwords for me.
 
-## 21. Document/Image to Text Reader  (Text-To-Speech)
+## 21. Document/Image to Text Reader (Text-To-Speech)
+
 In this project chatgpt gets text from images or documents and reads them back to me.
-* First I install gTTS
->```pip install gTTS```
-* Then to play speech we generate I use playsound
->```pip install playsound```
-* I test that the text to speech is working
+
+- First I install gTTS
+  > `pip install gTTS`
+- Then to play speech we generate I use playsound
+  > `pip install playsound`
+- I test that the text to speech is working
+
 ```python
 from gtts import gTTS
 import playsound
