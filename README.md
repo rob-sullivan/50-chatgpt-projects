@@ -4,7 +4,7 @@ Code for 50 ChatGPT projects. [Get an email when finished](https://forms.gle/296
 
 ## Getting Started with Python
 
-Python is a versatile programming language that's great for beginners. This chapter will guide you through setting up Python and introduce you to its basic usage, including setting up a development environment with GitHub and virtual environments.
+Python is a versatile programming language that's great for beginners. If you don't come from a programming background this chapter will guide you through setting up Python and introduce you to its basic usage, including setting up a development environment with GitHub and virtual environments. A lot of people a lot smarter than me have created excellent tutorials on how to setup a coding environment and how to learn python, where possible I will try link to some tutorials but feel free to search online yourself and find something that helps you understand better.
 
 ### 1. Installing Python
 
@@ -40,14 +40,22 @@ A code editor helps you write and manage your Python code efficiently. One of th
 
 ### 3. Setting Up a Python Development Environment
 
-## Environment Setup
+1. Go to [GitHub](https://github.com/) and sign in or create an account.
+2. Click on the "+" icon in the upper right corner and select "New repository."
+3. Name your repository "50-chatgpt-projects" and click "Create repository."
+4. Install and Open [VS Code](https://code.visualstudio.com/download).
+5. Open the terminal in VS Code by clicking "View" > "Terminal" or pressing **Ctrl+**.
+6. Clone the repo `git clone git@github.com:rob-sullivan/50-chatgpt-projects.git`
+7. Navigate into the cloned repo `cd 50-chatgpt-projects`
+8. Ensure you have Python installed. I am using [python 3.8.0](https://www.python.org/downloads/release/python-380/).
+9. In a terminal create a python environment `python -m venv venv_chatgpt` and add it to your .gitignore
+10. Activate your python environment
+    - windows: `.\venv_chatgpt\Scripts\activate`
+    - mac/linux: `source venv_chatgpt/bin/activate`
 
-1. Created a repo on [github](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) then in [vs code](https://code.visualstudio.com/download) I cloned it to my laptop
-2. With [python 3.8.0](https://www.python.org/downloads/release/python-380/) installed I setup a python virtual environment with:
-   > `python -m venv venv_chatgpt`
-3. Added venv_chatgpt to .gitignore and pushed changes to github
-4. Activated python [virtual environment](https://docs.python.org/3/library/venv.html):
-   > `.\venv_chatgpt\Scripts\activate`
+### 4. Writing Your First Python Script
+
+## ChatGPT Projects
 
 ## 1. Chatbot
 
