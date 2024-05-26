@@ -4,7 +4,7 @@ Code for 50 ChatGPT projects. [Get an email when finished](https://forms.gle/296
 
 ## Getting Started with Python
 
-Python is a versatile programming language that's great for beginners. If you don't come from a programming background this chapter will guide you through setting up Python and introduce you to its basic usage, including setting up a development environment with GitHub and virtual environments. A lot of people a lot smarter than me have created excellent tutorials on how to setup a coding environment and how to learn python, where possible I will try link to some tutorials but feel free to search online yourself and find something that helps you understand better.
+Python is a versatile programming language that's great for beginners. If you don't come from a programming background this chapter will guide you through setting up Python and introduce you to its basic usage, including setting up a development environment with GitHub and virtual environments. A lot of people smarter than me have created excellent tutorials over the years on everything from how to setup a coding environment to how to learn python. Where possible I will try link to some tutorials but feel free to search online yourself.
 
 ### 1. Installing Python
 
